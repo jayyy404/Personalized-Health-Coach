@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lifestyle Coaching</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <form method="POST" enctype="multipart/form-data" class="bg-white p-8 rounded shadow-lg w-96">
+    <h2 class="text-2xl font-bold mb-4 text-center">AI Lifestyle Coach</h2>
+
+    <label class="block mb-2">Age</label>
+    <input name="age" type="number" class="w-full border p-2 mb-4" required>
+
+    <label class="block mb-2">Weight (kg)</label>
+    <input name="weight" type="number" class="w-full border p-2 mb-4" required>
+
+    <label class="block mb-2">Height (cm)</label>
+    <input name="height" type="number" class="w-full border p-2 mb-4" required>
+
+    <label class="block mb-2">Target Goal</label>
+    <input name="goal" type="text" class="w-full border p-2 mb-4" required>
+
+    <label class="block mb-2">Upload Image</label>
+    <input name="image" type="file" class="w-full mb-4" accept="image/*">
+
+    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full">
+      Get Coaching Advice
+    </button>
+  </form>
+</body>
+</html>
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coaching Results</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 p-8">
+  <!-- Header -->
+  <div class="max-w-4xl mx-auto rounded-lg overflow-hidden shadow-md">
+    <div class="bg-green-400 p-6">
+      <h1 class="text-black text-3xl font-bold">Your Personalized AI Coaching Plan</h1>
+      <p class="text-black mt-1">Based on your goals and profile, here's your customized lifestyle plan</p>
+    </div>
+
+    <!-- Profile Stats -->
+    <div class="grid grid-cols-4 gap-6 bg-green-50 p-6">
+      <div>
+        <p class="text-sm text-gray-600 font-medium">Age</p>
+        <p class="text-lg font-bold text-gray-800">{{ age }} years</p>
+      </div>
+      <div>
+        <p class="text-sm text-gray-600 font-medium">Height</p>
+        <p class="text-lg font-bold text-gray-800">{{ height }} cm</p>
+      </div>
+      <div>
+        <p class="text-sm text-gray-600 font-medium">Weight</p>
+        <p class="text-lg font-bold text-gray-800">{{ weight }} kg</p>
+      </div>
+      <div>
+        <p class="text-sm text-gray-600 font-medium">Goal</p>
+        <p class="text-lg font-bold text-gray-800">{{ goal }}</p>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex gap-4 p-6 border-b">
+      <button onclick="showSection('diet')" class="diet-tab flex items-center gap-2 px-4 py-2 bg-yellow-100 text-yellow-600 font-medium rounded-full">
+        ☉ Diet Plan
+      </button>
+      <button onclick="showSection('workout')" class="exercise-tab flex items-center gap-2 px-4 py-2 text-gray-500 hover:bg-gray-100 font-medium rounded-full">
+        ☺ Exercise Plan
+      </button>
+      <button onclick="showSection('supplements')" class="supplements-tab flex items-center gap-2 px-4 py-2 text-gray-500 hover:bg-gray-100 font-medium rounded-full">
+        ◇ Supplements
+      </button>
+    </div>
+
+    <!-- Dynamic Content -->
+    <div class="p-6">
+      <div id="diet-section" class="space-y-4 text-gray-700 leading-relaxed whitespace-pre-line">
+        {{ advice.diet or "No diet recommendations available" }}
+      </div>
+      <div id="workout-section" class="space-y-4 text-gray-700 leading-relaxed whitespace-pre-line hidden">
+        {{ advice.workout or "No exercise plan available" }}
+      </div>
+      <div id="supplements-section" class="space-y-4 text-gray-700 leading-relaxed whitespace-pre-line hidden">
+        {{ advice.supplements or "No supplement recommendations available" }}
+      </div>
+
+      {% if image_path %}
+      <div class="mt-6">
+        <p class="text-sm font-semibold text-gray-500 mb-2">Uploaded Image:</p>
+        <img src="{{ url_for('static', filename='uploads/' + image_path.split('/')[-1]) }}" class="rounded-lg shadow-md border" alt="User photo">
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Back Button -->
+    <div class="px-6 pb-6">
+      <a href="/" class="inline-block mt-4 text-blue-600 hover:text-blue-700 font-medium">
+        ← Back to Form
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function showSection(section) {
+      document.querySelectorAll('[id$="-section"]').forEach(el => el.classList.add('hidden'));
+      document.getElementById(`${section}-section`).classList.remove('hidden');
+
+      document.querySelectorAll('button').forEach(btn => {
+        btn.classList.remove('bg-yellow-100', 'text-yellow-600', 'bg-green-100', 'text-green-600', 'bg-purple-100', 'text-purple-600');
+        btn.classList.add('text-gray-500');
+      });
+
+      const activeBtn = event.currentTarget;
+      activeBtn.classList.remove('text-gray-500');
+
+      switch(section) {
+        case 'diet':
+          activeBtn.classList.add('bg-yellow-100', 'text-yellow-600');
+          break;
+        case 'workout':
+          activeBtn.classList.add('bg-green-100', 'text-green-600');
+          break;
+        case 'supplements':
+          activeBtn.classList.add('bg-purple-100', 'text-purple-600');
+          break;
+      }
+    }
+  </script>
+</body>
+</html>
