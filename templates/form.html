@@ -7,6 +7,10 @@
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
   <form method="POST" enctype="multipart/form-data" class="bg-white p-8 rounded shadow-lg w-96">
+    <div class="flex justify-center gap-4 mb-4">
+      <img src="{{ url_for('static', filename='college_logo.png') }}" alt="College Logo" class="h-16">
+      <img src="{{ url_for('static', filename='university_logo.png') }}" alt="University Logo" class="h-16">
+    </div>
     <h2 class="text-2xl font-bold mb-4 text-center">AI Lifestyle Coach</h2>
 
     <label class="block mb-2">Age</label>
