@@ -64,21 +64,32 @@ def index():
 
         model = genai.GenerativeModel("gemini-1.5-flash")  # type: ignore
         prompt = f"""
-                I am a {age}-year-old person with a height of {height} cm and weight of {weight} kg. 
-                My target goal is to {goal}.
+                You are a certified lifestyle coach specializing in personalized wellness plans.
+
+                I am a {age}-year-old individual, {height} cm tall, weighing {weight} kg. My primary goal is to {goal}.
+
+                Based on this information, create a comprehensive and personalized lifestyle plan divided into the following sections, each with clear headers:
 
                 Provide a personalized lifestyle coaching plan with CLEAR SECTION HEADERS in this exact format:
 
                 Diet Advice:
-                [Your diet recommendations here and list of foods to include/exclude. Add bullet points for clarity]
+                - Provide specific dietary recommendations tailored to my goal.
+                - List foods to include and avoid.
+                - Suggest meal timing and portion sizes.
+                - Use bullet points for clarity.
 
                 Workout Plan:
-                [List of exercises, duration, and frequency in bullet points]
+                - Outline a weekly exercise regimen suitable for my fitness level and goal.
+                - Include types of exercises, duration, frequency, and intensity.
+                - Mention any necessary equipment or alternatives.
+                - Present the plan in bullet points.
 
                 Supplement Recommendations:
-                [List of supplements, dosages, and timing]
+                - Recommend supplements that support my goal.
+                - Specify dosages, timing, and any precautions.
+                - Use bullet points for easy reference.
 
-                Make each section detailed but concise, using bullet points or short paragraphs. 
+                Make each section detailed but concise, using bullet points or short paragraphs.
                 Avoid using markdown formatting and keep text plain.
                 """
 
