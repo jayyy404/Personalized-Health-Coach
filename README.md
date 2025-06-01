@@ -1,7 +1,7 @@
 # Personalized-Health-Coach
 This is the repository for our final project for the subject Information Syste.<br>
 
-This is a Flask web application that provides personalized lifestyle coaching using Google Gemini AI. Users can enter their age, weight, height, and health goals, and optionally upload an image. The app generates a customized plan with diet advice, workout routines, and supplement recommendations, all presented in a clear and user-friendly format. Finally, results are shown instantly after submitting the form.
+The **Personalized-Health-Coach** is a Flask web application that provides personalized lifestyle coaching using Google Gemini AI. Users can enter their age, weight, height, and health goals, and optionally upload an image. The app generates a customized plan with diet advice, workout routines, and supplement recommendations, all presented in a clear and user-friendly format. Finally, results are shown instantly after submitting the form.
 
 ## Features
 
