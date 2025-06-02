@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-from werkzeug.utils import secure_filename
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
@@ -8,10 +7,6 @@ load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))  # type: ignore
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
-
-if not os.path.exists(app.config['UPLOAD_FOLDER']):
-    os.makedirs(app.config['UPLOAD_FOLDER'])
 
 def parse_advice(response_text):
     sections = {
@@ -44,7 +39,6 @@ def parse_advice(response_text):
         if current_section and line:
             result[current_section].append(line)
     
-    # Convert lists to strings and handle empty sections
     return {k: '\n'.join(v) if v else "No recommendations provided for this section." for k,v in result.items()}
 
 @app.route("/", methods=["GET", "POST"])
@@ -54,13 +48,6 @@ def index():
         weight = request.form.get("weight")
         height = request.form.get("height")
         goal = request.form.get("goal")
-
-        image = request.files.get("image")
-        image_path = None
-        if image and image.filename:
-            filename = secure_filename(image.filename)
-            image_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-            image.save(image_path)
 
         model = genai.GenerativeModel("gemini-1.5-flash")  # type: ignore
         prompt = f"""
@@ -100,8 +87,7 @@ def index():
 
         return render_template("results.html",
                                age=age, weight=weight, height=height, goal=goal,
-                               advice=advice_sections,
-                               image_path=image_path,) 
+                               advice=advice_sections)
 
     return render_template("form.html")
 
