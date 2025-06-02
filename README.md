@@ -1,6 +1,6 @@
 # Personalized Health Coach
 
-This is the repository for our final project for the subject Information Syste.<br>
+This is the repository for our final project for the subject Intelligent Systems.<br>
 
 The **Personalized-Health-Coach** is a modern Flask web application that leverages Google Gemini AI to deliver tailored lifestyle, diet, and exercise plans. Designed for ease of use and accessibility, this project empowers users to achieve their health goals with AI-driven recommendations, all presented in a clean, responsive interface.
 
